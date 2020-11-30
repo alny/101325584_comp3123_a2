@@ -37,7 +37,8 @@ const App = () => {
         >
           <p style={{ margin: "0px" }}>Current location:</p>
           <b style={{ marginLeft: "15px" }}>
-            {weather && weather.name}, {weather.sys.country}
+            {weather && weather.name},{" "}
+            {weather && weather.sys && weather.sys.country}
           </b>
         </div>
 
@@ -55,11 +56,17 @@ const App = () => {
           </p>
           <img
             src={`http://openweathermap.org/img/wn/${
-              weather && weather.weather.length !== 0 && weather.weather[0].icon
+              weather &&
+              weather.weather &&
+              weather.weather.length !== 0 &&
+              weather.weather[0].icon
             }@2x.png`}
           />
           <p style={{ color: "#000", fontSize: "16px", fontWeight: 600 }}>
-            {weather && weather.weather.length !== 0 && weather.weather[0].main}{" "}
+            {weather &&
+              weather.weather &&
+              weather.weather.length !== 0 &&
+              weather.weather[0].main}{" "}
             and {Math.round(weather.main.temp / 100)}°C
           </p>
           <p
@@ -70,6 +77,7 @@ const App = () => {
             }}
           >
             {weather &&
+              weather.weather &&
               weather.weather.length !== 0 &&
               weather.weather[0].description}
           </p>
